@@ -1,0 +1,60 @@
+{
+    "questoes":[
+        
+        {
+        "numQuestao":0,
+        "pergunta":"pergunta",
+        "alternativaA":"Alternativa A",
+        "alternativaB":"Alternativa B",
+        "alternativaC":"Alternativa C",
+        "alternativaD":"Alternativa D",
+        "correta":"0"
+        }, 
+        {
+        "numQuestao":1,
+        "pergunta":" Quem recebeu o título de 'Full Metal' na série de anime 'Full Metal Alchemist'? ",
+        "alternativaA":"Alphonse Elric",
+        "alternativaB":"Van Hohenheim",
+        "alternativaC":"Izumi Curtis",
+        "alternativaD":"Edward Elric",
+        "correta":" Edward Elric "
+        },
+        {
+            "numQuestao":2,
+        "pergunta":"Quem é a verdadeira princesa da lua em Sailor Moon?",
+        "alternativaA":"Sailor Vênus",
+        "alternativaB":"Marinheiro Júpiter",
+        "alternativaC":"Sailor Moon",
+        "alternativaD":"Sailor Mars",
+        "correta":"Sailor Moon"
+        },
+        {
+            "numQuestao":3,
+        "pergunta":" Quem é o autor da série de mangá 'Astro Boy'?",
+        "alternativaA":"Yoshihiro Tatsumi",
+        "alternativaB":"Mitsuteri Yokoyama",
+        "alternativaC":" Takao Saito",
+        "alternativaD":"Osamu Tezuka",
+        "correta":"Osamu Tezuka"
+        },
+        {
+            "numQuestao":4,
+        "pergunta":"Quais Pokémon e suas evoluções foram proibidos de aparecer em um papel principal após o Incidente do Episódio 38?",
+        "alternativaA":"A Linha Pikachu",
+        "alternativaB":"A Linha Porygon",
+        "alternativaC":"A Linha Magby",
+        "alternativaD":"A Linha Elekid",
+        "correta":"A Linha Porygon"
+        },
+        {
+            "numQuestao":5,
+        "pergunta":"No mangá Naruto, qual é o sobrenome de Tsunade?",
+        "alternativaA":"Haruno",
+        "alternativaB":"Senju",
+        "alternativaC":"Yamanaka",
+        "alternativaD":"Uzumaki",
+        "correta":"0"
+        }
+
+    ]
+}
