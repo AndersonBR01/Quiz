@@ -142,7 +142,7 @@ function fimDoJogo() {
 
   let s = 's'
   pontos == 0 ? s = '' : s = s
-  //instrucoes.textContent = window.location = "../index2.html"
+  //instrucoes.textContent = window.location = "../modal.html" +pontos + " pontos" +s
   instrucoes.textContent = "Fim de Jogo! Você conseguiu " + pontos + " ponto"+ s
 
   instrucoes.classList.add('placar')
