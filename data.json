@@ -17,7 +17,7 @@
         "alternativaB":"Van Hohenheim",
         "alternativaC":"Izumi Curtis",
         "alternativaD":"Edward Elric",
-        "correta":" Edward Elric "
+        "correta":"Edward Elric"
         },
         {
             "numQuestao":2,
@@ -53,8 +53,27 @@
         "alternativaB":"Senju",
         "alternativaC":"Yamanaka",
         "alternativaD":"Uzumaki",
-        "correta":"0"
+        "correta":"Senju"
+        },
+        {
+            "numQuestao":6,
+            "pergunta": "Qual foi o segundo Pokémon de Ash Ketchum? ",
+            "alternativaA":" Pikachu ",
+            "alternativaB":" Caterpie ",
+            "alternativaC":" Chamander ",
+            "alternativaD":" Pidgey ",
+            "correta":" Caterpie "
+        },
+        {
+            "numQuestao":7,
+            "pergunta":  " Qual é o nome do leão de pelúcia em Bleach?" ,
+            "alternativaA": " Kon ",
+            "alternativaB":" Chade ",
+            "alternativaC":" Urdiú " ,
+            "alternativaD":" Jo " ,
+            "correta":" Kon "
         }
+
 
     ]
 }

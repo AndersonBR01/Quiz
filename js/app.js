@@ -1,65 +1,166 @@
-const instrucoes = document.querySelector("#instrucoes");
-const aviso = document.querySelector("#aviso");
-const titulo = document.querySelector("#titulo");
+/* App JS com JSON */
+const titulo = document.querySelector('#titulo')
+
+let instrucoes = document.querySelector('#instrucoes')
+let aviso = document.querySelector('#aviso')
+
+// article da questao
+let questao = document.querySelector('.questao')
+
+let nQuestao = document.querySelector('#nQuestao')
+let imgQuestao = document.querySelector(".imagemDaQuestao img")
+let pergunta = document.querySelector('#pergunta')
+
+let a = document.querySelector('#a')
+let b = document.querySelector('#b')
+let c = document.querySelector('#c')
+let d = document.querySelector('#d')
 
 
-//questoes
-const questao = document.querySelector(".questao");
-const nQuestao = document.querySelector("#nQuestao");
-const pergunta = document.querySelector("pergunta");
+let numero = document.querySelector('#numero')
+let total  = document.querySelector('#total')
 
-const a = document.querySelector("#a");
-const b = document.querySelector("#b");
-const c = document.querySelector("#c");
-const d = document.querySelector("#d");
+titulo.textContent = "Anderson Quizz"
+let totalDeQuestoes = 0
+numero.textContent  = 1
 
-const numero = document.querySelector("#numero");
-const total = document.querySelector("#total");
+let pontos = 0
+let placar = document.querySelector('.placar')
 
-titulo.innerHTML = "Quizz"
-const totalDeQuestoes = 0
-numero.innerHTML = 1
+let somAcerto   = document.querySelector('#somAcerto')
+let somErro     = document.querySelector('#somErro')
+let somAplausos = document.querySelector('#somAplausos')
 
-const pontos = 0
-const placar = document.querySelector(".placar")
+// ENDERECO DO ARQUIVO JSON
+const url = 'data.json'
 
-const somAcerto = document.querySelector("#somAcerto");
-const somErro = document.querySelector("#somErro");
-const somAplausos = document.querySelector("#somAplausos");
+function pegarDados(i) {
 
-//arquivo json
-const url = "data.json"
+  fetch(url).then(response =>{
+      
+        return response.json();
 
-function pegarDados(i){
+      }).then(data => {
 
-    fetch(url).then(response =>{
-        return response.json()       
-
-        }).then(data => {
-        if (data.erro) {
-            console.log(response);
-            return
+        if(data.erro) {
+          console.log("Erro ao acessar o JSON")
+          return
         }
-
-        //quantidade de questao
-        let qtdQuestoes = (data.questoes.lenght) -1
-        console.log(qtdQuestoes +"10 questoes")
-        //total 
+        
+        // passar o quantidade de questoes para a variavel
+        let qtdQuestoes = (data.questoes.length)-1
+        // escrver a qtdQuestoes para total
         total.textContent = parseInt(qtdQuestoes)
-
-        //passar valor de i no parametro
+        
+        // passe o valor de i no parametro
         atribuirDados(data, i)
 
-    })
+      })
+      
+} // fim pegarDados
+
+function atribuirDados(data, i) {
+  if(i >= data.questoes.length) {
+    //console.log('Fim das questoes')
+    i = 1
+  }
+    nQuestao.textContent = data.questoes[i].numQuestao
+    pergunta.textContent = data.questoes[i].pergunta
+
+    a.textContent = data.questoes[i].alternativaA
+    b.textContent = data.questoes[i].alternativaB
+    c.textContent = data.questoes[i].alternativaC
+    d.textContent = data.questoes[i].alternativaD
+    
+    numero.textContent = data.questoes[i].numQuestao
+    
+    let certa = document.querySelector('#correct')
+    certa.value = data.questoes[i].correta
+    //console.log(resposta)
 }
 
-function atribuirDados(data, i ) {
-    if (i >data.questoes.lenght){
-        console.log(data)
+// COMECAR O QUIZ
+let questaoAtual = 1
+pegarDados(1)
+
+function proximaQuestao(numQuestao) {
+  let proxima = parseInt(numQuestao)
+  pegarDados(proxima)
+}
+
+function verificarSeAcertou(nQuestao, resposta) {
+
+  let numeroDaQuestao = nQuestao.value
+  //console.log("Questão " + numeroDaQuestao)
+
+  let respostaEscolhida = resposta.textContent
+  //console.log("RespU " + respostaEscolhida)
+
+  // usar o fetch para pegar os dados
+  pegarDados(numeroDaQuestao)
+
+  let respostaCorrect = correct.value
+  //console.log(respostaCorrect)
+
+  if(respostaEscolhida == respostaCorrect) {
+      //console.log("Acertou")
+      somAcerto.play()      
+      pontos += 10 // pontos = pontos + 10
+  } else {
+      console.log("Errou!")
+      somErro.play()
+  }
+
+  quantidadeDeQuestoes = parseInt(total.textContent)
+  //console.log("Total " + quantidadeDeQuestoes)
+
+  proxima = parseInt(numero.textContent)+1
+  //console.log("Próxima " + proxima)
+
+  setTimeout(function() {
+    
+    if(proxima > quantidadeDeQuestoes) {
+        console.log('Fim do Jogo!')
+        fimDoJogo()
+    } else {
+        proximaQuestao(proxima)
     }
+  }, 50)
+
+  // atualizar o placar
+  atualizarPlacar()
+
 }
 
+function atualizarPlacar() {
+  placar.textContent = pontos
+}
 
+function fimDoJogo() {
+
+  somAplausos.play()
+
+  let s = 's'
+  pontos == 0 ? s = '' : s = s
+  //instrucoes.textContent = window.location = "../index2.html"
+  instrucoes.textContent = "Fim de Jogo! Você conseguiu " + pontos + " ponto"+ s
+
+  instrucoes.classList.add('placar')
+
+  // OCULTAR O ARTICLE DA QUESTAO
+  questao.style.display = 'none'
+
+  setTimeout(function() {
+      pontos = 0 // zerar placar
+      instrucoes.classList.remove('placar')
+
+      // REINICIAR O JOGO
+      questao.style.display = 'block'
+      proximaQuestao(1)
+      instrucoes.textContent = 'Leia a questão e clique na resposta correta'
+  }, 7000)
+
+}
 
 
 
